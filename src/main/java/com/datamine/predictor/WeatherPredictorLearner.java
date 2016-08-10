@@ -75,7 +75,6 @@ public class WeatherPredictorLearner implements WeatherPredictorApp {
 
 			return status;
 		} catch (Exception exception) {
-			exception.printStackTrace();
 			logger.error("Exception Occured while model learning...");
 			throw new WeatherPredictionException(exception, "Exception Occured while model learning...");
 		}
