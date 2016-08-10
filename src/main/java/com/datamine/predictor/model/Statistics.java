@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import com.datamine.predictor.exception.ModelLearnerException;
 
 public class Statistics {
-	public final static Logger logger = Logger.getLogger(OLSMultipleLinearRegressionModel.class);
+	public final static Logger logger = Logger.getLogger(Statistics.class);
 	
 	public static double  getStandardDeviation(double[] dataArray) throws ModelLearnerException{
 		return new StandardDeviation().evaluate(dataArray);

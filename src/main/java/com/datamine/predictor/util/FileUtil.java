@@ -68,8 +68,7 @@ public class FileUtil {
 			File file = new File(path);
 			if (file.isDirectory()) {
 				fileNames = file.listFiles();
-			} //else
-				//fileNames[0] = file;
+			} 
 			return fileNames;
 		} else {
 			throw new UtilException("Exception occured file listing files in the path : " + path);

@@ -50,8 +50,8 @@ public class TestOLSMultipleLinearRegressionModel extends TestCase {
 	private Map<String,ModelData> createModelData() {
 		Map<String,ModelData> modelDatas = new HashMap<String,ModelData>();
 		ModelData modelData = new ModelData();
-		modelData.setIndependentVariableArry(new double[]{2.3,0.345,2.456,0.124,1.09,1.234});
-		modelData.setDependentVariableArry(new double[][]{{4.3,2.3},{6.345,0.987},{2.456,8.456},{5.124,3.456},{2.09,3.45},{2.098,1.2564}});
+		modelData.setDependentVariableArry(new double[]{2.3,0.345,2.456,0.124,1.09,1.234});
+		modelData.setIndependentVariableArry(new double[][]{{4.3,2.3},{6.345,0.987},{2.456,8.456},{5.124,3.456},{2.09,3.45},{2.098,1.2564}});
 		modelData.setHumidityVariableArry(new double[]{20.3,23.345,21.456,10.124,10.09,14.234});
 		modelData.setPressureVariableArry(new double[]{22.3,5.345,2.456,5.124,1.09,1.234});
 		modelDatas.put("66196", modelData);

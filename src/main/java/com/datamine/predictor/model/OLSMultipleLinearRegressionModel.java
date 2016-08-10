@@ -72,8 +72,8 @@ public class OLSMultipleLinearRegressionModel implements Model {
 	 */
 	private ModelData createModelData(Map<String, WeatherParameters> dailyWeatherStats) throws ParseException {
 		ModelData modelData = new ModelData();
-		double[][] dependentVariableArry = new double[dailyWeatherStats.size()][5];
-		double[] independentVariableArry = new double[dailyWeatherStats.size()];
+		double[][] independentVariableArry = new double[dailyWeatherStats.size()][5];
+		double[] dependentVariableArry = new double[dailyWeatherStats.size()];
 		double[] pressureVariableArry = new double[dailyWeatherStats.size()];
 		double[] humidityVariableArry = new double[dailyWeatherStats.size()];
 		int index = 0;
@@ -87,15 +87,15 @@ public class OLSMultipleLinearRegressionModel implements Model {
 			if (isRecordMissing(dailyWeatherStats, previousDate, lastYearDate, lastYearPreviousDate))
 				continue;
 
-			independentVariableArry[index] = dailyWeatherStatsEntry.getValue().getTemperature();
+			dependentVariableArry[index] = dailyWeatherStatsEntry.getValue().getTemperature();
 			pressureVariableArry[index] = dailyWeatherStatsEntry.getValue().getHumidity();
 			humidityVariableArry[index] = dailyWeatherStatsEntry.getValue().getPressure();
 
-			dependentVariableArry[index][0] = dailyWeatherStatsEntry.getValue().getHumidity();
-			dependentVariableArry[index][1] = dailyWeatherStatsEntry.getValue().getPressure();
-			dependentVariableArry[index][2] = dailyWeatherStats.get(previousDate).getTemperature();
-			dependentVariableArry[index][3] = dailyWeatherStats.get(lastYearDate).getTemperature();
-			dependentVariableArry[index][4] = dailyWeatherStats.get(lastYearPreviousDate).getTemperature();
+			independentVariableArry[index][0] = dailyWeatherStatsEntry.getValue().getHumidity();
+			independentVariableArry[index][1] = dailyWeatherStatsEntry.getValue().getPressure();
+			independentVariableArry[index][2] = dailyWeatherStats.get(previousDate).getTemperature();
+			independentVariableArry[index][3] = dailyWeatherStats.get(lastYearDate).getTemperature();
+			independentVariableArry[index][4] = dailyWeatherStats.get(lastYearPreviousDate).getTemperature();
 			index++;
 		}
 
@@ -131,8 +131,8 @@ public class OLSMultipleLinearRegressionModel implements Model {
 	private List<Double> evaluateStationLevelModelCoefficient(ModelData stationModelData) throws ModelLearnerException {
 		List<Double> modelCoefficents = new ArrayList<Double>();
 		OLSMultipleLinearRegression olsMultipleLinearRegression = new OLSMultipleLinearRegression();
-		olsMultipleLinearRegression.newSampleData(stationModelData.getIndependentVariableArry(),
-				stationModelData.getDependentVariableArry());
+		olsMultipleLinearRegression.newSampleData(stationModelData.getDependentVariableArry(),
+				stationModelData.getIndependentVariableArry());
 		for (double modelCoefficent : olsMultipleLinearRegression.estimateRegressionParameters()) {
 			modelCoefficents.add(modelCoefficent);
 		}
